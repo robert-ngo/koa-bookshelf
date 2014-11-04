@@ -1,0 +1,17 @@
+{
+  "name": "booklib",
+  "version": "0.0.1",
+  "description": "BookLib Sample Description",
+  "private": true,
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap-sass-official": "~3.3.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

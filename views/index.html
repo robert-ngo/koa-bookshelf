@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= siteName %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="javascript:"><%= siteName %></a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    {% block title %}Messages{% endblock %}
+    {% block content %}
+        <h1>Routes</h1>
+        <% if (typeof routes != 'undefined') { %>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Path</th>
+                      <th>Method</th>
+                      <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% i = 1%>
+                <% (routes).forEach(function(route){ %>
+                    <% if (typeof route != 'undefined') { %>
+                        <tr>
+                            <td><%= i++ %></td>
+                            <td><%= route.path %></td>
+                            <td><%= route.method %></td>
+                            <td><a href="<%= route.path %>" title="<%= route.path %>"><%= route.path %></a></td>
+                        </tr>
+                     <% } %>
+                <% });%>   
+                </tbody>
+            </table>
+        <% } %>
+        </div>
+      {% endblock %}
+  <script type="text/javascript" src="/js/script.js"></script>
+</body>
+</html>

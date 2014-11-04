@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+    <h1>Books from Murakami</h1>   
+    {% for book in books %}
+      <div class="book col-md-6">
+        <div class="cover col-md-4">
+          <img src="{{ book.image }}" alt="" style="width: 100%; height="auto" ">
+        </div>
+        <div class="info col-md-8">
+          <h3>{{ book.title }}</h3>
+        </div>
+      </div>
+    {% endfor %}
+{% endblock %}
