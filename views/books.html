@@ -7,7 +7,9 @@
     {% for book in books %}
       <div class="book col-md-6">
         <div class="cover col-md-4">
-          <img src="{{ book.image }}" alt="" style="width: 100%; height="auto" ">
+          <a href="/book/{{ book._id.toString() }}">
+            <img src="{{ book.image }}" alt="" style="width: 100%; height="auto" ">
+          </a>
         </div>
         <div class="info col-md-8">
           <h3>{{ book.title }}</h3>

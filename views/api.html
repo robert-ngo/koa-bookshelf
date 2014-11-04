@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block title %}API{% endblock %}
+
+{% block content %}
+    <h1>Routes</h1>   
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th>#</th>
+              <th>Path</th>
+              <th>Method</th>
+              <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for route in routes %}
+            {% if (route != 'undefined') %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ route.path }}</td>
+                    <td>{{ route.method }}</td>
+                    <td><a href="{{ route.path }}" title="{{ route.path }}">{{ route.path }}</a></td>
+                </tr>
+             {% endif %}
+        {% endfor %}   
+        </tbody>
+    </table>
+{% endblock %}

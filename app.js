@@ -1,81 +1,40 @@
 'use strict';
 
 // Requires
-var koa = require('koa'),
-    path = require('path'),
-    fs = require('fs'),
-    views = require('co-views'),
-    serve = require('koa-static'),
-    route = require('koa-route'),
-    sessions = require('koa-session'),
-    logger = require('koa-logger'),
-    jsonp = require('koa-jsonp');
+var koa = require('koa');
+var path = require('path');
+var fs = require('fs');
+var views = require('co-views');
+var serve = require('koa-static');
+var route = require('koa-route');
+var logger = require('koa-logger');
+var jsonp = require('koa-jsonp');
+var render = require('./config/render');
 
-// populate Sample Data
-// var sampleData = require('./sample.data.js');
-// sampleData.populate();
-
-// Initilize
-var app = module.exports = koa(),
-    //render = views(__dirname + '/views', { map : {html : 'ejs'}}),
-    render = require('./config/render'),
-    port = process.env.PORT || 9353,
-    env = process.env.NODE_ENV || 'development'
-
-app.keys = ['place-your-key-here'];
-
-app.use(sessions());
-
-if ('test' == env) {
-    port = 9354;
-}
-
+/******************************************************
+ * Initialize application
+ ******************************************************/
+var app = module.exports = koa();
 app.use(logger());
 app.use(jsonp());
 
-// Routing
-
-// static file serv
+/** Define public path, for css/js/images **/
 app.use(serve(__dirname + '/public'));
 
-/* helper: to display routes on '/index.html' */
-route.routes = [];
-
-route.record = function(routeInfo){
-  route.routes.push(routeInfo);
-};
-
-route.record({ method: 'GET' , path: '/' });
-route.record({ method: 'GET' , path: '/api/posts' });
-route.record({ method: 'GET' , path: '/api/post/:id' });
-route.record({ method: 'POST' , path: '/api/post' });
-route.record({ method: 'PUT' , path: '/api/post/:id' });
-route.record({ method: 'DELETE' , path: '/api/post/:id' });
-
-route.record({ method: 'GET' , path: '/api/books' });
-route.record({ method: 'GET' , path: '/api/book/:id' });
-route.record({ method: 'POST' , path: '/api/book' });
-route.record({ method: 'PUT' , path: '/api/book/:id' });
-route.record({ method: 'DELETE' , path: '/api/book/:id' });
-/* helper */
-
-
-app.use(route.get('/', function *() {
-  this.body = yield render('index.html', {
-    siteName: 'BookLib',
-    /* helper: list of routes and methods */
-    routes: route.routes
-  });
-}));
-
-// Bootstrap routes/api
+/******************************************************
+ * Bootstrap routes/api
+ * Scan all directory /routes and add to app
+ ******************************************************/
 var routesPath = path.join(__dirname, 'routes');
 fs.readdirSync(routesPath).forEach(function(file) {
   if(file[0] === '.') return;
   require(routesPath + '/' + file)(app, route);
 });
 
-// handle error
+
+/******************************************************
+ * Handle Error 404 and 500
+ ******************************************************/
 app.use(function *(next) {
   try {
     yield next;
@@ -92,7 +51,40 @@ app.use(function *(){
     this.body  = yield render('404.html', { errors: err});
 });
 
-if (!module.parent) 
+/******************************************************
+ * App config
+ ******************************************************/
+var port = process.env.PORT || 9500;
+var env = process.env.NODE_ENV || 'development';
+if ('test' == env) port = 9546;
+
+/******************************************************
+ * Prepopulate database or not
+ * Variables
+ * (boolean) resetDB
+ * (boolean) populateData
+ ******************************************************/
+var resetDB = false;
+var populateData = false; 
+if(resetDB || populateData) {
+  var data = require('./data/sample.data.js');
+
+  if(resetDB) {
+    console.log('Begin truncating database. %d record(s) will be deleted.', data.countDb());
+    data.resetDB();
+    console.log('Database is empty now.');
+  }
+  if(populateData) {
+    console.log('Begin importing sample data.');    
+    data.populateDb();
+    console.log('Data imported. %d record(s).', data.countDb());
+  }
+}
+
+/******************************************************
+ * Start server
+ ******************************************************/
+if (!module.parent) {
   app.listen(port);
-  console.log('Listening on port:'+port+' in ' + env + ' mode.');
-  console.log('Site can be viewed at: http://localhost:' + port);
+  console.log('Site can be viewed at: http://localhost:%d', port);
+}

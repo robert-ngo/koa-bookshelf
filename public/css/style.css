@@ -8204,4 +8204,15 @@ button.close {
 /* line 1, ../sass/partials/_base.scss */
 .book {
   min-height: 200px;
+  margin: 10px;
+}
+
+/* line 6, ../sass/partials/_base.scss */
+.image-upload {
+  background-image: url("../images/upload.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  min-height: 300px;
+  cursor: no-drop;
 }

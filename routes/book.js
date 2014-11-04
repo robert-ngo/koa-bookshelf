@@ -6,27 +6,44 @@ var parse = require('co-body'),
     //views = require('co-views'),
     //render = views(__dirname + './views', { map : {html : 'ejs'}});
 var render = require('../config/render');
+var serve = require('koa-static');
+
 
 module.exports = function(app, route) {
-
+app.use(serve(__dirname + '/public'));
   // ALL POSTS
-  app.use(route.get('/api/books', function *() {
-    var bookss = yield Book.find({});
-    this.body = yield render('books.html', {'books': bookss});
+  app.use(route.get('/', function *() {
+    var books = yield Book.find({});
+    this.body = yield render('books.html', {'books': books});
   }));
 
   // FIND POST BY ID
   app.use(route.get('/api/book/:id', function *(id) {
-    this.body = yield Book.find({id: id});
+    this.body = yield Book.find({_id: id});
+  }));
+
+  // CREATE BOOK FORM
+  app.use(route.get('/book/add', function*(){
+    var years = []
+    for(var i = 1980; i <= 2014; i++){
+      years.push(i);
+    }
+    this.body = yield render('book-add.html', { "years": years });
   }));
 
   // CREATE POST
-  app.use(route.post('/api/book', function *(id) {
+  app.use(route.post('/api/book', function *() {
+    var defaultImage = "/images/default.png";
     var newBook = yield parse(this);
-    newBook.created_on = new Date;
-    newBook.updated_on = new Date;  
-    this.body = yield Book.insert(newBook);
-    if(this.body) this.status = 201;
+    yield Book.insert({
+      title: newBook.title, 
+      year: newBook.year, 
+      genre: newBook.genre.split(','), 
+      plot: newBook.plot, 
+      image: (newBook.image) ? newBook.image : defaultImage
+    })
+    
+    this.redirect('/');
   }));
 
   // UPDATE POST

@@ -1,3 +1,13 @@
 .book {
 	min-height: 200px;
+  	margin: 10px;
+}
+
+.image-upload {
+	background-image: url('../images/upload.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	min-height: 300px;
+	cursor: no-drop;
 }
