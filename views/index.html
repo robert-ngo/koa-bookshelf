@@ -13,16 +13,22 @@
           <ul class="nav navbar-nav">
             <li><a href="/book/add">
               <span class="glyphicon glyphicon-edit"></span>&nbsp;Add book</a></li>
-          </ul>
           <li><a href="/api">
-              <span class="glyphicon glyphicon-edit"></span>&nbsp;API</a></li>
+              <span class="glyphicon glyphicon-random"></span>&nbsp;API</a></li>
           </ul>
-
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/Tomsqualm/koa-bookshelf" target="_blank">
+              <span class="glyphicon glyphicon-cloud"></span>&nbsp;View on Github</a></li>
+          </ul>
       </div>
     </div>
     <div class="container">
     <div class="page-header">
+      <div class="alert alert-success">
+          <strong>Hello!</strong> This is an example of CRUD using KoaJS, MongoDB.
+      </div>
       <h1>{% block title %}Messages{% endblock %}</h1>
+      
     </div>
     
     {% block content %}{% endblock %}

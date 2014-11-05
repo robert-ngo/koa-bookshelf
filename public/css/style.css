@@ -8225,7 +8225,7 @@ body {
 /********* Book **************************************************************/
 /* line 18, ../sass/partials/_base.scss */
 .book-wrapper {
-  min-height: 815px;
+  min-height: 850px;
   margin-bottom: 30px;
 }
 /* line 21, ../sass/partials/_base.scss */
@@ -8237,8 +8237,12 @@ body {
   border-bottom: 1px solid #ccc;
   min-height: 55px;
 }
+/* line 27, ../sass/partials/_base.scss */
+.book-wrapper .info .links {
+  margin-top: 20px;
+}
 
-/* line 29, ../sass/partials/_base.scss */
+/* line 32, ../sass/partials/_base.scss */
 .book-container {
   width: 250px;
   min-height: 400px;
@@ -8249,7 +8253,7 @@ body {
   perspective: 1200px;
 }
 
-/* line 39, ../sass/partials/_base.scss */
+/* line 42, ../sass/partials/_base.scss */
 .book {
   z-index: 5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
@@ -8264,7 +8268,7 @@ body {
   transform-origin: 125px 0;
 }
 
-/* line 51, ../sass/partials/_base.scss */
+/* line 54, ../sass/partials/_base.scss */
 .book:after {
   content: "";
   position: absolute;
@@ -8277,27 +8281,31 @@ body {
   /* Fix for flickering in Chrome  */
 }
 
-/* line 61, ../sass/partials/_base.scss */
-.book:hover {
+/* line 64, ../sass/partials/_base.scss */
+.book-wrapper:hover {
+  background: #eee;
+}
+/* line 66, ../sass/partials/_base.scss */
+.book-wrapper:hover .book {
   -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
   -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
   transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
 }
 
-/* line 67, ../sass/partials/_base.scss */
+/* line 74, ../sass/partials/_base.scss */
 .book-cover {
   position: relative;
   z-index: 10;
 }
 
-/* line 68, ../sass/partials/_base.scss */
+/* line 75, ../sass/partials/_base.scss */
 .book-cover img {
   vertical-align: bottom;
   max-width: 100%;
   height: auto;
 }
 
-/* line 70, ../sass/partials/_base.scss */
+/* line 77, ../sass/partials/_base.scss */
 .book-spine {
   position: absolute;
   color: #fff;
@@ -8317,7 +8325,7 @@ body {
   transform-origin: 0 0;
 }
 
-/* line 87, ../sass/partials/_base.scss */
+/* line 94, ../sass/partials/_base.scss */
 .book-spine h3 {
   display: block;
   width: 350px;
@@ -8341,7 +8349,7 @@ body {
   transform-origin: 0 0;
 }
 
-/* line 109, ../sass/partials/_base.scss */
+/* line 116, ../sass/partials/_base.scss */
 .book-spine:before {
   display: block;
   content: "";

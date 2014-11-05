@@ -16,7 +16,7 @@ body {
 
 /********* Book **************************************************************/
 .book-wrapper {
-	min-height: 815px;
+	min-height: 850px;
 	margin-bottom: 30px;
 	.info {
 		margin-top: 20px;
@@ -61,11 +61,15 @@ body {
 	z-index: 20;
     -webkit-transform: translateZ(1px); /* Fix for flickering in Chrome  */
 }
-.book:hover {
-    -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
-    -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
-    transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+.book-wrapper:hover{
+	background: #eee;
+	.book {
+	    -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+	    -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+	    transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+	}	
 }
+
 
 .book-cover { position: relative; z-index: 10; }
 .book-cover img { vertical-align: bottom; max-width: 100%; height: auto; }
