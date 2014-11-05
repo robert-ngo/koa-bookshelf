@@ -8,14 +8,28 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="javascript:">BookLib</a>
+          <a class="navbar-brand" href="/">BookLib</a>
         </div>
+          <ul class="nav navbar-nav">
+            <li><a href="/book/add">
+              <span class="glyphicon glyphicon-edit"></span>&nbsp;Add book</a></li>
+          </ul>
+          <li><a href="/api">
+              <span class="glyphicon glyphicon-edit"></span>&nbsp;API</a></li>
+          </ul>
+
       </div>
     </div>
     <div class="container">
-    {% block title %}Messages{% endblock %}
-    {% block content %}
-      {% endblock %}
+    <div class="page-header">
+      <h1>{% block title %}Messages{% endblock %}</h1>
+    </div>
+    
+    {% block content %}{% endblock %}
+  
+  <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>  
+  <script type="text/javascript" src="/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
   <script type="text/javascript" src="/js/script.js"></script>
+  <link rel="stylesheet" href="/bower_components/bootstrap-sweetalert/lib/sweet-alert.css">
 </body>
 </html>

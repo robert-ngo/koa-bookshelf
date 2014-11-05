@@ -1,8 +1,10 @@
-.book {
-	min-height: 200px;
-  	margin: 10px;
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
 }
 
+.page-header {
+	margin-top: 75px; 
+}
 .image-upload {
 	background-image: url('../images/upload.png');
 	background-repeat: no-repeat;
@@ -11,3 +13,120 @@
 	min-height: 300px;
 	cursor: no-drop;
 }
+
+/********* Book **************************************************************/
+.book-wrapper {
+	min-height: 815px;
+	margin-bottom: 30px;
+	.info {
+		margin-top: 20px;
+		h3 {
+			border-bottom: 1px solid #ccc;
+			min-height: 55px;
+		}
+		.links {
+			margin-top: 20px;
+		}
+	}
+}
+.book-container {
+	width: 250px; 
+	min-height: 400px;
+	margin: 0 auto; 
+	display: block;
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    perspective: 1200px;
+}
+
+.book { z-index: 5; 
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    -webkit-transition: 0.75s;
+    -moz-transition: 0.75s;
+    transition: 0.75s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 125px 0;
+    -moz-transform-origin: 125px 0;
+    transform-origin: 125px 0;
+}
+.book:after { 
+	content: ""; 
+	position: absolute; 
+	top: 0; 
+	bottom: 0; 
+	left: 3px; 
+	width: 7px; 
+	z-index: 20;
+    -webkit-transform: translateZ(1px); /* Fix for flickering in Chrome  */
+}
+.book:hover {
+    -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+    -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+    transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+}
+
+.book-cover { position: relative; z-index: 10; }
+.book-cover img { vertical-align: bottom; max-width: 100%; height: auto; }
+ 
+.book-spine { 
+	position: absolute; 
+	color: #fff; 
+	position: absolute; 
+	bottom: 0; top: 0; 
+	width: 50px; z-index: 5; 
+	overflow: hidden; 
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); 
+	// background: url(images/spine.jpg) -64px 0 no-repeat; 
+	background-size: auto 100%;
+    -webkit-transform: rotateY(-90deg) translateX(-49px);
+    -moz-transform: rotateY(-90deg) translateX(-49px);
+    transform: rotateY(-90deg) translateX(-49px);
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+.book-spine h3 { 
+	display: block; 
+	width: 350px; 
+	text-align: left; 
+	color: #fff; 
+	position: absolute; 
+	top: 0; 
+	left: 35px; 
+	text-indent: 30px; 
+	text-transform: uppercase; 
+	font-family: Helvetica, Arial, sans-serif; 
+	font-size: 1.2em; 
+	opacity: 0.75; 
+	font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transform: rotateZ(90deg);
+    -moz-transform: rotateZ(90deg);
+    transform: rotateZ(90deg);
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+.book-spine:before { 
+	display: block; 
+	content: ""; 
+	width: 100%; 
+	height: 100%; 
+	background: #333; 
+}
+/********* Book **************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+

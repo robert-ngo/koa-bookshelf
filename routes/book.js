@@ -2,27 +2,16 @@ var parse = require('co-body'),
     db = require('../config/db'),
     wrap = require('co-monk'),
     Book = wrap(db.get('books'));
-    //path = require('path'),
-    //views = require('co-views'),
-    //render = views(__dirname + './views', { map : {html : 'ejs'}});
 var render = require('../config/render');
-var serve = require('koa-static');
-
 
 module.exports = function(app, route) {
-app.use(serve(__dirname + '/public'));
   // ALL POSTS
   app.use(route.get('/', function *() {
     var books = yield Book.find({});
     this.body = yield render('books.html', {'books': books});
   }));
 
-  // FIND POST BY ID
-  app.use(route.get('/api/book/:id', function *(id) {
-    this.body = yield Book.find({_id: id});
-  }));
-
-  // CREATE BOOK FORM
+  // Render book add form
   app.use(route.get('/book/add', function*(){
     var years = []
     for(var i = 1980; i <= 2014; i++){
@@ -31,31 +20,79 @@ app.use(serve(__dirname + '/public'));
     this.body = yield render('book-add.html', { "years": years });
   }));
 
-  // CREATE POST
-  app.use(route.post('/api/book', function *() {
+  /**
+   * Handle creating new book and update existing book
+   * Method accepted: POST 
+   * @type {String}
+   */
+  app.use(route.post('/book', function *() {
+    if('POST' != this.method) return yield next;
+
     var defaultImage = "/images/default.png";
-    var newBook = yield parse(this);
-    yield Book.insert({
-      title: newBook.title, 
-      year: newBook.year, 
-      genre: newBook.genre.split(','), 
-      plot: newBook.plot, 
-      image: (newBook.image) ? newBook.image : defaultImage
-    })
+    var input = yield parse(this);
+
+    // Without _id, create new book
+    if(null === input._id) {
+      var inserted = yield Book.insert({
+        title: input.title, 
+        year: input.year, 
+        genre: input.genre.split(','), 
+        plot: input.plot, 
+        image: (input.image) ? input.image : defaultImage
+      });
+
+      if(!inserted) {
+        this.throw(405, "Unable to add new book.");
+      }
+    }
+    // else, update book with that _id
+    else {
+      var updated = yield Book.updateById(input._id, {
+        title: input.title, 
+        year: input.year, 
+        genre: input.genre.split(','), 
+        plot: input.plot,
+        image: (input.image) ? input.image : defaultImage
+      }); 
+      if(!updated) {
+        this.throw(405, "Unable to update book %s", input.title);
+      }
+    }    
     
     this.redirect('/');
   }));
 
-  // UPDATE POST
-  app.use(route.put('/api/book/:id', function *(id) {
-    var updatedPost = yield parse(this);
-    updatedPost.updated_on = new Date;
-    this.body = yield Book.updateById(id, updatedPost);
+
+  /**
+   * Render edit form
+   * @type {Array}
+   */
+  app.use(route.get('/book/:id/edit', function*(id){
+    if('GET' != this.method) return yield next;
+
+    var years = []
+    for(var i = 1980; i <= 2014; i++){
+      years.push(i);
+    }
+
+    var book = yield Book.findById(id);
+    if(null === book) {
+      this.throw(404, "Book doesn't exist");
+    }
+    this.body = yield render('book-edit.html', { "years": years, "book": book });
   }));
 
-  // DELETE POST
-  app.use(route.del('/api/book/:id', function *(id) {
-    yield Book.remove({"_id": id});
+  /**
+   * Handle delete book
+   * Need to invest more on securely delete book. Token ??
+   */
+  app.use(route.get('/book/:id/delete', function *(id) {
+    if('GET' != this.method) return yield next;
+    var removed = yield Book.remove({"_id": id});
+    if(!removed) {
+      this.throw(405, "Unable to delete book");
+    }
+    this.redirect('/');
   }));
 
 };

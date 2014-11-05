@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("http://fonts.googleapis.com/css?family=Lato");
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /* line 9, ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_normalize.scss */
 html {
@@ -370,8 +371,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot");
-  src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+  src: url("../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/glyphicons-halflings-regular.eot");
+  src: url("../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 /* line 21, ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_glyphicons.scss */
 .glyphicon {
@@ -8202,12 +8203,16 @@ button.close {
   }
 }
 /* line 1, ../sass/partials/_base.scss */
-.book {
-  min-height: 200px;
-  margin: 10px;
+body {
+  font-family: 'Lato', Calibri, Arial, sans-serif;
 }
 
-/* line 6, ../sass/partials/_base.scss */
+/* line 5, ../sass/partials/_base.scss */
+.page-header {
+  margin-top: 75px;
+}
+
+/* line 8, ../sass/partials/_base.scss */
 .image-upload {
   background-image: url("../images/upload.png");
   background-repeat: no-repeat;
@@ -8216,3 +8221,133 @@ button.close {
   min-height: 300px;
   cursor: no-drop;
 }
+
+/********* Book **************************************************************/
+/* line 18, ../sass/partials/_base.scss */
+.book-wrapper {
+  min-height: 815px;
+  margin-bottom: 30px;
+}
+/* line 21, ../sass/partials/_base.scss */
+.book-wrapper .info {
+  margin-top: 20px;
+}
+/* line 23, ../sass/partials/_base.scss */
+.book-wrapper .info h3 {
+  border-bottom: 1px solid #ccc;
+  min-height: 55px;
+}
+
+/* line 29, ../sass/partials/_base.scss */
+.book-container {
+  width: 250px;
+  min-height: 400px;
+  margin: 0 auto;
+  display: block;
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  perspective: 1200px;
+}
+
+/* line 39, ../sass/partials/_base.scss */
+.book {
+  z-index: 5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  -webkit-transition: 0.75s;
+  -moz-transition: 0.75s;
+  transition: 0.75s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 125px 0;
+  -moz-transform-origin: 125px 0;
+  transform-origin: 125px 0;
+}
+
+/* line 51, ../sass/partials/_base.scss */
+.book:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  width: 7px;
+  z-index: 20;
+  -webkit-transform: translateZ(1px);
+  /* Fix for flickering in Chrome  */
+}
+
+/* line 61, ../sass/partials/_base.scss */
+.book:hover {
+  -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+  -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+  transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+}
+
+/* line 67, ../sass/partials/_base.scss */
+.book-cover {
+  position: relative;
+  z-index: 10;
+}
+
+/* line 68, ../sass/partials/_base.scss */
+.book-cover img {
+  vertical-align: bottom;
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 70, ../sass/partials/_base.scss */
+.book-spine {
+  position: absolute;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  width: 50px;
+  z-index: 5;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  background-size: auto 100%;
+  -webkit-transform: rotateY(-90deg) translateX(-49px);
+  -moz-transform: rotateY(-90deg) translateX(-49px);
+  transform: rotateY(-90deg) translateX(-49px);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+/* line 87, ../sass/partials/_base.scss */
+.book-spine h3 {
+  display: block;
+  width: 350px;
+  text-align: left;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 35px;
+  text-indent: 30px;
+  text-transform: uppercase;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.2em;
+  opacity: 0.75;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: rotateZ(90deg);
+  -moz-transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+/* line 109, ../sass/partials/_base.scss */
+.book-spine:before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #333;
+}
+
+/********* Book **************************************************************/

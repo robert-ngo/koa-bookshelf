@@ -1,19 +1,41 @@
 {% extends 'index.html' %}
 
-{% block title %}Messages{% endblock %}
+{% block title %}Books from Murakami{% endblock %}
 
 {% block content %}
-    <h1>Books from Murakami</h1>   
-    {% for book in books %}
-      <div class="book col-md-6">
-        <div class="cover col-md-4">
-          <a href="/book/{{ book._id.toString() }}">
-            <img src="{{ book.image }}" alt="" style="width: 100%; height="auto" ">
-          </a>
+  
+    {% for book in books %}    
+      <div class="book-wrapper col-md-4">
+        <div class="book-container">
+          <div class="book">
+            <div class="book-cover">
+              <img src="{{ book.image }}" alt="" style="width: 100%; height="auto" ">
+            </div>
+            <div class="book-spine">
+              
+              <h3>{{ book.title }}</h3>
+            </div>
+          </div>
         </div>
-        <div class="info col-md-8">
+        <div class="info">
+          <div class="meta row">
+            <div class="author col-md-9">Murakami</div>
+            <div class="year col-md-3">{{ book.year }}</div>
+          </div>
           <h3>{{ book.title }}</h3>
+          <p>{{ book.plot }}</p>
+          <div class="genres">
+            {% for ge in book.genre %}
+              <span class="label label-default">{{ ge }}</span>
+            {% endfor %}
+          </div>
+          <div class="links">
+            <a href="/book/{{ book._id.toString() }}/edit" class="btn btn-primary">Edit</a>
+            {# <a href="/api/book/{{ book._id.toString() }}/delete" class="btn btn-danger sweet-delete">Delete book</a> #}
+          </div>
+
         </div>
       </div>
     {% endfor %}
 {% endblock %}
+
