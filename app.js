@@ -21,6 +21,7 @@ app.use(jsonp());
 
 /** Define public path, for css/js/images **/
 app.use(serve(__dirname + '/public'));
+console.log(__dirname);
 
 /******************************************************
  * Bootstrap routes/api
