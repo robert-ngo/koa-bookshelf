@@ -1,13 +1,14 @@
 /*
  * API page, list all routes
  */
-
 var parse = require('co-body');
-var	route = require('koa-route');
+var route = require('koa-route');
+
 var render = require('../config/render');
 var config = require('../config/config')();
 var monk = require('monk');
 var db = monk(config.mongoUrl);
+
 var wrap = require('co-monk');
 var Book = wrap(db.get('books'));
 

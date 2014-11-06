@@ -1,10 +1,14 @@
-var parse = require('co-body');
+'use strict';
+
 var config = require('../config/config')();
+var wrap = require('co-monk');
 var monk = require('monk');
 var db = monk(config.mongoUrl);
-var wrap = require('co-monk');
-var Book = wrap(db.get('books'));
+
+var parse = require('co-body');
 var render = require('../config/render');
+
+var Book = wrap(db.get('books'));
 
 module.exports = function(app, route) {
   // ALL POSTS
