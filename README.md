@@ -4,6 +4,7 @@ koa-bookshelf
 =============
 
 Sample CRUD application with KoaJS. 
+<br/>
 Working demo link: https://koa-bookshelf.herokuapp.com/
 
 To import sample data
@@ -17,7 +18,9 @@ var populateData = false;
 Running locally
 =============
 Make sure node is 0.11.* or higher
+<br/>
 Make sure MongoDB is running
+<br/>
 Start app
 ``` sh
 gulp
