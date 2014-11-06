@@ -20,8 +20,7 @@ var config = {
 		mongoUrl: BookLib_prod
 	},
 }
-// console.log(process.argv);
+
 module.exports = function (mode) {
   return config[mode || process.argv[2] || 'local'] || config.local;
 };
-//module.exports = config[process.argv[2] || 'local'] || config.local;
