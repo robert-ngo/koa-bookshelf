@@ -10,7 +10,7 @@ module.exports = function(app, route) {
   // ALL POSTS
   app.use(route.get('/', function *() {
     var books = yield Book.find({});
-    this.body = yield render('books.html', {'books': books});
+    this.body = yield render('book/books.html', {'books': books});
   }));
 
   // Render book add form
@@ -19,7 +19,7 @@ module.exports = function(app, route) {
     for(var i = 1980; i <= 2014; i++){
       years.push(i);
     }
-    this.body = yield render('book-add.html', { "years": years });
+    this.body = yield render('book/book-add.html', { "years": years });
   }));
 
   /**
@@ -81,7 +81,7 @@ module.exports = function(app, route) {
     if(null === book) {
       this.throw(404, "Book doesn't exist");
     }
-    this.body = yield render('book-edit.html', { "years": years, "book": book });
+    this.body = yield render('book/book-edit.html', { "years": years, "book": book });
   }));
 
   /**

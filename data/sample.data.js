@@ -1,7 +1,9 @@
 "use strict";
 
+var config = require('../config/config')();
 var wrap = require('co-monk');
-var db = require('../config/db');
+var monk = require('monk');
+var db = monk(config.mongoUrl);
 
 var sampleData = require('./sample.data.json');
 

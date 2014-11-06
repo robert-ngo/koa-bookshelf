@@ -1,9 +1,9 @@
-{% extends 'index.html' %}
+{% extends '../index.html' %}
 
 {% block title %}Books from Murakami{% endblock %}
 
 {% block content %}
-  
+  {% if books.length > 0 %}
     {% for book in books %}    
       <div class="book-wrapper col-md-4">
         <div class="book-container">
@@ -37,5 +37,12 @@
         </div>
       </div>
     {% endfor %}
+  {% else %}
+    <div class="jumbotron">
+      <p>Oups! Database is empty now.</p>
+      <p><a href="/book/add"><span class="glyphicon glyphicon-cloud-upload"></span> Add some book</a></p>
+      <p><a href="/populate-data"><span class="glyphicon glyphicon-cloud-upload"></span> Import sample database</a></p>
+    </div>
+  {% endif %}
 {% endblock %}
 
