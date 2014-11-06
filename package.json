@@ -7,6 +7,7 @@
     "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
     "test": "node --harmony `which gulp` test"
   },
+  "postinstall": "bower install",
   "engines": {
     "node": "0.11.12"
   },

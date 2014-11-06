@@ -4,8 +4,13 @@
 
 {% block content %}
   {% if books.length > 0 %}
+    <section class="books">
     {% for book in books %}    
-      <div class="book-wrapper col-md-4">
+     {% if loop.index0 % 3 == 0 %}
+        <div class="row">
+     {% endif %}
+
+      <article id="book-{{ book._id.toString() }}" class="book-wrapper col-md-4">
         <div class="book-container">
           <div class="book">
             <div class="book-cover">
@@ -33,10 +38,15 @@
             <a href="/book/{{ book._id.toString() }}/edit" class="btn btn-primary">Edit</a>
             {# <a href="/api/book/{{ book._id.toString() }}/delete" class="btn btn-danger sweet-delete">Delete book</a> #}
           </div>
-
         </div>
-      </div>
+      </article>
+
+      {% if loop.index0 % 3 == 2 or loop.last %}
+        </div>
+      {% endif %}
+
     {% endfor %}
+    </section><!-- wrapper -->
   {% else %}
     <div class="jumbotron">
       <p>Oups! Database is empty now.</p>
