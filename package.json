@@ -28,6 +28,7 @@
     "swig": "^1.4.2",
     "nodemon": "^1.2.1",
     "mime": "^1.2.11",
+
     "bower": "latest",
     "co": "^3.0.6",
     "gulp": "latest",
@@ -35,7 +36,6 @@
     "gulp-mocha-co": "^0.4.1-co.3",
     "gulp-nodemon": "latest",
     "gulp-watch": "latest",
-    "gulp-sass": "latest",
     "mocha": "latest",
     "should": "^3.3.1",
     "supertest": "^0.12.1"
