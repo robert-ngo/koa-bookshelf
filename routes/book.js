@@ -1,7 +1,9 @@
-var parse = require('co-body'),
-    db = require('../config/db'),
-    wrap = require('co-monk'),
-    Book = wrap(db.get('books'));
+var parse = require('co-body');
+var config = require('../config/config')();
+var monk = require('monk');
+var db = monk(config.mongoUrl);
+var wrap = require('co-monk');
+var Book = wrap(db.get('books'));
 var render = require('../config/render');
 
 module.exports = function(app, route) {

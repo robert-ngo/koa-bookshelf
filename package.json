@@ -4,8 +4,11 @@
   "description": "BookLib web app",
   "main": "app.js",
   "scripts": {
-    "start": "node --harmony-generators `which gulp`",
+    "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
     "test": "node --harmony `which gulp` test"
+  },
+  "engines": {
+    "node": "0.11.12"
   },
   "private": true,
   "license": "MIT",
@@ -20,9 +23,9 @@
     "co-monk": "latest",
     "monk": "0.8.0",
     "koa-session": "latest",
-    "ejs": "latest",
     "bluebird": "^2.3.10",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "nodemon": "^1.2.1"
   },
   "devDependencies": {
     "bower": "latest",

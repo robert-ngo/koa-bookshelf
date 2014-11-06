@@ -10,6 +10,7 @@ var route = require('koa-route');
 var logger = require('koa-logger');
 var jsonp = require('koa-jsonp');
 var render = require('./config/render');
+var config = require('./config/config')();
 
 /******************************************************
  * Initialize application
@@ -52,13 +53,6 @@ app.use(function *(){
 });
 
 /******************************************************
- * App config
- ******************************************************/
-var port = process.env.PORT || 9500;
-var env = process.env.NODE_ENV || 'development';
-if ('test' == env) port = 9546;
-
-/******************************************************
  * Prepopulate database or not
  * Variables
  * (boolean) resetDB
@@ -84,7 +78,8 @@ if(resetDB || populateData) {
 /******************************************************
  * Start server
  ******************************************************/
-if (!module.parent) {
+if (!module.parent) {  
+  var port = process.env.PORT || config.port || 9001;
   app.listen(port);
-  console.log('Site can be viewed at: http://localhost:%d', port);
+  console.log('Running %s site at: http://localhost:%d', config.mode, port);
 }

@@ -5,8 +5,9 @@
 var parse = require('co-body');
 var	route = require('koa-route');
 var render = require('../config/render');
-
-var db = require('../config/db');
+var config = require('../config/config')();
+var monk = require('monk');
+var db = monk(config.mongoUrl);
 var wrap = require('co-monk');
 var Book = wrap(db.get('books'));
 

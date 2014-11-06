@@ -1,6 +1,6 @@
 'use strict';
-var monk = require('monk'),
-	wrap = require('co-monk');
+var monk = require('monk');
+var wrap = require('co-monk');
 
 var config = {
   "db": "BookLib",  
