@@ -7,14 +7,6 @@ Sample CRUD application with NodeJS, KoaJS, MongoDB, Twitter Bootstrap 3.
 <br/>
 Working demo link: https://koa-bookshelf.herokuapp.com/
 
-To import sample data
-=============
-Change variable in app.js
-``` sh
-var resetDB = false;
-var populateData = false; 
-```
-
 Running locally
 =============
 Make sure node is 0.11.* or higher
