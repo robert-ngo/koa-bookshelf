@@ -1,4 +1,4 @@
-![alt tag](https://photos-4.dropbox.com/t/1/AAAPVzA3DmCAerxsUXm3jkgr90PkHff73r2rVa-rppxzwg/12/14251402/png/1024x768/3/1415314800/0/2/BookLib.png/X5wAldutzz2bDNRhs92HLDVW8zeLBu45uQdDDh2CHKM)
+![alt tag](https://dl.dropboxusercontent.com/u/14251402/BookLib/BookLib.png)
 
 koa-bookshelf
 =============
