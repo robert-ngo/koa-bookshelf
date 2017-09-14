@@ -1,11 +1,11 @@
-![alt tag](https://dl.dropboxusercontent.com/u/14251402/BookLib/BookLib.png)
+![alt text](https://user-images.githubusercontent.com/1014114/30410983-4d64af18-98dc-11e7-8fe5-5fb832847e63.png "Koa bookshelf screenshot")
 
 koa-bookshelf
 =============
 
 Sample CRUD application with NodeJS, KoaJS, MongoDB, Twitter Bootstrap 3.
 <br/>
-Working demo link: https://koa-bookshelf.herokuapp.com/
+Demo: https://koa-bookshelf.herokuapp.com/
 
 Running locally
 =============
@@ -34,7 +34,7 @@ heroku login
 ```
 then push files to Heroku
 ``` sh
-git commit -am "It's a beautiful day"
+git commit -am "Sample comment"
 git push heroku master
 heroku open
 ```
