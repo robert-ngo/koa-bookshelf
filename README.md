@@ -4,8 +4,6 @@ koa-bookshelf
 =============
 
 Sample CRUD application with NodeJS, KoaJS, MongoDB, Twitter Bootstrap 3.
-<br/>
-Demo: https://koa-bookshelf.herokuapp.com/
 
 Running locally
 =============
